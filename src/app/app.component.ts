@@ -6,36 +6,52 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Statements';
+  title = 'StatementsPOC';
   
   private rowData;
   private columnDefs;
   private rowGroupPanelShow;
   private gridApi;
   private gridColumnApi;
+  private suppressMenuColumnPanel;
+
+  private autoGroupColumnDef;
 
   constructor() {
     this.columnDefs = [
-      {headerName: 'Date', field: 'date', checkboxSelection: false, suppressMenu:true, minWidth: 150, maxWidth: 200, sort: "asc",
+      {headerName: 'Year', field: 'year', enableRowGroup: true, checkboxSelection: false, minWidth: 120, maxWidth: 200, sort: "desc",
       cellClass: "cell-wrap-text",
-      autoHeight: true},
+      autoHeight: true, menuTabs: ["filterMenuTab"]},
+      {headerName: 'Month', field: 'month', enableRowGroup: true, checkboxSelection: false, minWidth: 120, maxWidth: 200,
+      cellClass: "cell-wrap-text",
+      autoHeight: true, menuTabs: ["filterMenuTab"]},
       {headerName: 'Fund Family', field: 'fund', enableRowGroup: true, minWidth: 300,
       cellClass: "cell-wrap-text",
-      autoHeight: true},
+      autoHeight: true, menuTabs: ["filterMenuTab"]},
       {headerName: 'Account', field: 'account', enableRowGroup: true, minWidth: 300,
       cellClass: "cell-wrap-text",
-      autoHeight: true},
-      {headerName: 'Statement', field: 'statement', suppressSorting:true, suppressMenu:true, minWidth: 150, maxWidth: 200,
+      autoHeight: true, menuTabs: ["filterMenuTab"]},
+      {headerName: 'Statement', field: 'statement', suppressSorting:true, suppressMenu:true, minWidth: 140, maxWidth: 200,
       cellClass: "cell-wrap-text",
       autoHeight: true}
     ];
     this.rowData = [
-      { date: '09/09/2018', fund: 'FundFam-123456-1 butter butter butter butter butter butter butter butter butter butter butter butter butter butter butter butter', account: 'acnt123456-35000', statement: 'View'  },
-      { date: '09/08/2001', fund: 'FundFam-123456-2', account: 'acnt123456-35000', statement: 'View'  },
-      { date: '09/07/1999', fund: 'FundFam-123456-3', account: 'acnt123456-35000', statement: 'View'  },
-      { date: '09/06/2015', fund: 'FundFam-123456-4', account: 'acnt123456-35000', statement: 'View'  }
+      { year: '2018', month: 'January', fund: 'FundFam-123456-1 butter butter butter butter butter butter butter butter butter butter butter butter butter butter butter butter', account: 'acnt123456-35000', statement: 'View'  },
+      { year: '2001', month: 'January',  fund: 'FundFam-123456-2', account: 'acnt123456-35000', statement: 'View'  },
+      { year: '1999', month: 'February',  fund: 'FundFam-123456-3', account: 'acnt123456-35000', statement: 'View'  },
+      { year: '2015', month: 'March',  fund: 'FundFam-123456-4', account: 'acnt123456-35000', statement: 'View'  }
     ];
     this.rowGroupPanelShow = "always";
+    this.suppressMenuColumnPanel = true;
+    this.autoGroupColumnDef = {
+      headerName: " Group ",
+      minWidth:150,
+      menuTabs: ["filterMenuTab"],
+      cellRendererParams: {
+        suppressCount: true,
+        checkbox: false
+      }
+    };
   }
 
   gridresize(event) {

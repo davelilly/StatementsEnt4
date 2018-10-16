@@ -1,26 +1,39 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<!--Parenthesis are functions. Square brackets are properties.-->
+<!--gridOptions is simply a way of saying, "Hey this affects the whole grid".-->
+<!--I left this (="suppressMenuColumnPanel") in just to show that I could do it this way, OR I could have done this: [suppressMenuColumnPanel]="true" .-->
+<!--How can I hide only tool panel from ag-grid enterprise?https://github.com/ag-grid/ag-grid/issues/1137-->
+
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
   
+
+<p>Column menu: https://www.ag-grid.com/javascript-grid-column-menu/ and https://stackoverflow.com/questions/40821453/how-to-remove-first-menu-from-ag-grid-column-menu</p> 
+<p>Set % column widths: https://stackoverflow.com/questions/50336813/is-there-a-way-to-specify-ag-grid-column-width-in-percentage</p>
+<p>Set Group col minWidth, see "CUSTOM!" here: https://www.ag-grid.com/javascript-grid-grouping/</p>
 </div>
-<ag-grid-angular 
-    #agGrid
-    style="min-width: 100%; height: 100%;"
-    id="myGrid"
-    [rowData]="rowData"
-    class="ag-theme-material"
-    [columnDefs]="columnDefs"
-    [rowData]="rowData"
-    [enableSorting]="true"
-    [enableFilter]="true"
-    [enableColResize]="true"
-    [rowGroupPanelShow]="rowGroupPanelShow"
-    (gridSizeChanged)="gridresize($event)"
-    (columnResized)="onColumnResized($event)"
-    (gridReady)="onGridReady($event)" 
-    colResizeDefault='shift'
-    >
-</ag-grid-angular>
+
+
+  <ag-grid-angular 
+      #agGrid
+      style="min-width: 841px; height: 100%;"
+      id="myGrid"
+      [rowData]="rowData"
+      class="ag-theme-material"
+      [columnDefs]="columnDefs"
+      [rowData]="rowData"
+      [enableSorting]="true"
+      [enableFilter]="true"
+      [enableColResize]="true"
+      [rowGroupPanelShow]="rowGroupPanelShow"
+      (gridSizeChanged)="gridresize($event)"
+      (columnResized)="onColumnResized($event)"
+      (gridReady)="onGridReady($event)" 
+      [colResizeDefault]='shift'
+      [suppressMenuColumnPanel] = "suppressMenuColumnPanel"
+      [autoGroupColumnDef]="autoGroupColumnDef"
+      >
+  </ag-grid-angular>
 
