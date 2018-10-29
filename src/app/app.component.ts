@@ -50,9 +50,13 @@ export class AppComponent {
       cellRendererParams: {
         suppressCount: true,
         checkbox: false
+      },
+      filterValueGetter: function(params) {
+        return params.data ? [params.data.year, params.data.month, params.data.fund, params.data.account] : null;
       }
     };
   }
+  
 
   gridresize(event) {
     event.api.sizeColumnsToFit();
